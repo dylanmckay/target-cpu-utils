@@ -1,11 +1,4 @@
-[package]
-name = "target-cpu-macro"
-version = "0.1.0"
-authors = ["Dylan McKay <me@dylanmckay.io>"]
-edition = "2018"
-
-[lib]
-proc-macro = true
-
-[dependencies]
-json = "0.12"
+[workspace]
+members = [
+  "macro",
+]
