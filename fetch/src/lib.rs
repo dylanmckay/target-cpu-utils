@@ -1,5 +1,18 @@
+//! Provides a method for querying the CPU name from the current target specification JSON passed
+//! to Rust.
+//!
+//! See also the crate [target-cpu-macro](crates.io/crates/target-cpu-macro) for
+//! conditional compilation support.
+
 use std::path::Path;
 
+/// Returns the name of the target CPU.
+///
+/// Looks at the name of the current target specification JSON passed to `rustc` and
+/// derives that target from it.
+///
+/// If there is an error during the lookup, `Err(message)` is returned. If the target
+/// specification could be found, but it was empty, then `Ok(None)` is returned.
 pub fn target_cpu() -> Result<Option<String>, String> {
     // N.B. This environment variable can be used for testing. I didn't want to prefix
     // with 'RUST_', this will work sufficiently well as a scare tactic against usage.
