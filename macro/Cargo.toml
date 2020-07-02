@@ -4,6 +4,11 @@ version = "0.1.0"
 authors = ["Dylan McKay <me@dylanmckay.io>"]
 edition = "2018"
 
+repository = "https://github.com/dylanmckay/target-cpu-utils"
+documentation = "https://docs.rs/target-cpu-macro"
+description = "A procedural macro for conditional compilation based on the CPU being targeted"
+license = "MIT"
+
 [lib]
 proc-macro = true
 

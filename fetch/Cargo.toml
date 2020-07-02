@@ -4,5 +4,10 @@ version = "0.1.0"
 authors = ["Dylan McKay <me@dylanmckay.io>"]
 edition = "2018"
 
+repository = "https://github.com/dylanmckay/target-cpu-utils"
+documentation = "https://docs.rs/target-cpu-fetch"
+description = "Exposes a method for querying the CPU name from the current target specification JSON file"
+license = "MIT"
+
 [dependencies]
 json = "0.12"
