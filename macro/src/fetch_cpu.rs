@@ -1,6 +1,17 @@
 use std::path::Path;
 
 pub fn target_cpu() -> Result<Option<String>, String> {
+    // N.B. This environment variable can be used for testing. I didn't want to prefix
+    // with 'RUST_', this will work sufficiently well as a scare tactic against usage.
+    if let Ok(force_override_cpu) = std::env::var("_DYLAN_RUST_TARGET_CPU_FORCE_OVERRIDE").map(|s| s.trim().to_owned()) {
+        if !force_override_cpu.is_empty() {
+            eprintln!("warning: force overriding CPU detection in crate '{}' to CPU '{}'",
+                env!("CARGO_PKG_NAME"), force_override_cpu);
+
+            return Ok(Some(force_override_cpu));
+        }
+    }
+
     let target = if let Ok(target) = std::env::var("TARGET") {
         target
     } else {
