@@ -8,7 +8,7 @@
 
 extern crate proc_macro;
 
-mod fetch_cpu;
+use target_cpu_fetch as fetch_cpu;
 mod macro_impl;
 
 use proc_macro::*;
