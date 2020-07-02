@@ -1,7 +1,7 @@
 //! Provides a method for querying the CPU name from the current target specification JSON passed
 //! to Rust.
 //!
-//! See also the crate [target-cpu-macro](crates.io/crates/target-cpu-macro) for
+//! See also the crate [target-cpu-macro](https://crates.io/crates/target-cpu-macro) for
 //! conditional compilation support.
 
 use std::path::Path;

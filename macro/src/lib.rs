@@ -4,7 +4,7 @@
 //! attributes that can be used to conditionally enable code
 //! based on that CPU.
 //!
-//! Uses the crate [target-cpu-fetch](crates.io/crates/target-cpu-fetch) to
+//! Uses the crate [target-cpu-fetch](https://crates.io/crates/target-cpu-fetch) to
 //! drive the logic.
 
 #![feature(proc_macro_hygiene)]
