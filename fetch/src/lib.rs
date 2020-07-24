@@ -28,7 +28,7 @@ pub fn target_cpu() -> Result<Option<String>, String> {
     let target = if let Ok(target) = std::env::var("TARGET") {
         target
     } else {
-        return Err("cannot retrieve CPU name, please, pass --target flag to Cargo, e. g. \"--target atmega88pa\"".to_owned());
+        return Err("cannot retrieve CPU name, please, pass --target flag to Cargo, e. g. \"--target atmega88pa.json\"".to_owned());
     };
 
     let target_json_relative_path = Path::new(&format!("{}.json", target)).to_owned();
@@ -41,6 +41,7 @@ pub fn target_cpu() -> Result<Option<String>, String> {
             // containing custom target specification, e. g. atmega88pa.json
             // So in order to work, the name of *.json file should be the same
             // as the name of your MCU
+            eprintln!("[warning]: assuming a target CPU name of '{}' from the file name of the target spec JSON file", target);
 
             target
         },
@@ -54,7 +55,10 @@ fn parse_target_cpu_from_target_json(possible_json_path: &Path)
     -> Option<String> {
     let json_content = match std::fs::read(possible_json_path) {
         Ok(content) => String::from_utf8(content).unwrap(),
-        Err(..) => return None,
+        Err(..) => {
+            eprintln!("[warning]: cannot find target JSON file '{}' - due to limitations it needs to be in the crate root - is it?", possible_json_path.display());
+            return None;
+        },
     };
 
     let parsed = json::parse(&json_content).expect(&format!("failed to parse target JSON at '{}'", possible_json_path.display()));
