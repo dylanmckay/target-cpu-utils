@@ -43,7 +43,12 @@ pub fn target_cpu() -> Result<Option<String>, String> {
             // as the name of your MCU
             eprintln!("[warning]: assuming a target CPU name of '{}' from the file name of the target spec JSON file", target);
 
-            target
+            // Recognize the builtin target 'avr-unknown-gnu-atmega328'.
+            if let Some(cpu_name) = target.strip_prefix("avr-unknown-gnu-"){
+                cpu_name.to_owned()
+            } else {
+                target
+            }
         },
     };
 
